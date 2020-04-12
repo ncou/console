@@ -7,7 +7,7 @@
     "type": "library",
     "support": {
         "source": "https://github.com/ncou/console",
-        "issues": "https://github.com/ncou/console/issues",
+        "issues": "https://github.com/ncou/console/issues"
     },
     "autoload": {
         "psr-4": {
