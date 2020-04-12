@@ -20,9 +20,9 @@
         "symfony/console": "^5.0"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.11",
-        "phpstan/phpstan-phpunit": "^0.11",
-        "phpstan/phpstan-strict-rules": "^0.11",
+        "phpstan/phpstan": "^0.12",
+        "phpstan/phpstan-phpunit": "^0.12",
+        "phpstan/phpstan-strict-rules": "^0.12",
         "phpunit/phpunit": "^7.3",
         "chiron/coding-standard": "^2.2"
     },
@@ -35,7 +35,7 @@
         "phpunit": "phpunit --colors=always",
         "phpcs": "phpcs src",
         "phpcs-fix": "phpcbf src",
-        "phpstan": "phpstan analyse src --level=0",
+        "phpstan": "phpstan analyse src --level=max",
         "test-coverage": "phpunit --coverage-clover clover.xml"
     },
     "extra": {
