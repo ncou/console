@@ -5,15 +5,6 @@
     "homepage": "https://github.com/ncou/console",
     "license": "MIT",
     "type": "library",
-    "authors": [
-        {
-            "name": "ncou"
-        }
-    ],
-    "support": {
-        "source": "https://github.com/ncou/console",
-        "issues": "https://github.com/ncou/console/issues"
-    },
     "autoload": {
         "psr-4": {
             "Chiron\\Console\\": "src/"
