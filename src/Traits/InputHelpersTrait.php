@@ -23,7 +23,6 @@ trait InputHelpersTrait
      *
      * @return bool
      */
-    // TODO : je pense que cette fonction ne sert pas à grand chose !!!!
     public function hasArgument($name)
     {
         // TODO : regarder si il ne faut pas faire comme pour les options et aller chercher si il y a bien une valeur saisie par l'utilisateur dans les cas d'arguments facultatifs !!!
@@ -62,7 +61,6 @@ trait InputHelpersTrait
      * @param  string  $name
      * @return bool
      */
-    // TODO : méthode à virer elle ne sert pas à grand chose !!!!
     public function hasOption(string $name): bool
     {
         return $this->input->hasOption($name);

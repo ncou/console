@@ -98,4 +98,47 @@ abstract class AbstractCommand extends SymfonyCommand
         // TODO : il faudrait surement faire un try/catch autour de la méthode call, car si la méthode perform n'existe pas une exception sera retournée. Une fois le catch fait il faudra renvoyer une new CommandException($e->getMessage()), pour convertir le type d'exception (penser à mettre le previous exception avec la valeur $e).
         return (int) $invoker->call([$this, 'perform']);
     }
+
+
+    /**
+     * Configures the command.
+     */
+    /*
+    protected function configure(): void
+    {
+        $this->setName(static::NAME);
+        $this->setDescription(static::DESCRIPTION);
+
+        foreach ($this->defineOptions() as $option) {
+            call_user_func_array([$this, 'addOption'], $option);
+        }
+
+        foreach ($this->defineArguments() as $argument) {
+            call_user_func_array([$this, 'addArgument'], $argument);
+        }
+    }*/
+
+    
+
+    /**
+     * Define command options.
+     *
+     * @return array
+     */
+    /*
+    protected function defineOptions(): array
+    {
+        return static::OPTIONS;
+    }*/
+
+    /**
+     * Define command arguments.
+     *
+     * @return array
+     */
+    /*
+    protected function defineArguments(): array
+    {
+        return static::ARGUMENTS;
+    }*/
 }
