@@ -146,7 +146,8 @@ trait OutputHelpersTrait
     // TODO : il faudrait que les fonctions d'écriture (listing, info, text, write...etc) retournent "self" pour permettre de chainer les commandes du genre '$this->hr()->newLine(2);'
     protected function newLine(int $count = 1)
     {
-        $this->output->newLine($count);
+        //$this->output->newLine($count);
+        $this->write(str_repeat("\n", $count));
     }
 
 
