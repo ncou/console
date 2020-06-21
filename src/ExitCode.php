@@ -30,10 +30,12 @@ class ExitCode
     /**
      * The command completed successfully.
      */
+    // TODO : code à renommer en SUCCESS ????
     public const OK = 0;
     /**
      * The command exited with an error code that says nothing about the error.
      */
+    // TODO : code à renommer en ERROR ????
     public const UNSPECIFIED_ERROR = 1;
     /**
      * The command was used incorrectly, e.g., with the wrong number of

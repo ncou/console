@@ -31,6 +31,8 @@ trait OutputHelpersTrait
         'default'   => 'fg=default;bg=default'
     ];
 
+    // TODO : virer le paramétre sur la verbosité et lui passer un paramétre pour faire un saut de ligne (bool newLine = false). Et utiliser la méthode write() au lieu de line !!!
+
     /**
      * Write a string as informational output.
      *

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chiron\Console;
 
-use Chiron\Invoker\Invoker;
+use Chiron\Injector\Injector;
 use LogicException;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
@@ -13,6 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Chiron\Console\Traits\InputHelpersTrait;
 use Chiron\Console\Traits\OutputHelpersTrait;
 use Chiron\Console\Traits\CallCommandTrait;
+use Closure;
 
 //https://github.com/spiral/console/blob/master/src/Command.php
 //https://github.com/spiral/console/blob/master/src/Traits/HelpersTrait.php
@@ -90,13 +91,13 @@ abstract class AbstractCommand extends SymfonyCommand
             throw new LogicException('Your forgot to call the setContainer function.');
         }
 
-        $invoker = new Invoker($this->container);
+        $injector = new Injector($this->container);
 
         // TODO : lever une exception si la méthode perform n'est pas présente !!!!
             // TODO : lever une logicexception si la méthode 'perform' n'est pas trouvée dans la classe mére ? (voir même une CommandException)
         // TODO : ajouter un contrôle sur la valeur de retour pour s'assurer que c'est bien un int qui est renvoyé ??? ou alors retourner d'office le code 0 qui indique qu'il n'y a pas eu d'erreurs ????
         // TODO : il faudrait surement faire un try/catch autour de la méthode call, car si la méthode perform n'existe pas une exception sera retournée. Une fois le catch fait il faudra renvoyer une new CommandException($e->getMessage()), pour convertir le type d'exception (penser à mettre le previous exception avec la valeur $e).
-        return (int) $invoker->call([$this, 'perform']);
+        return (int) $injector->call(Closure::fromCallable([$this, 'perform']));
     }
 
 

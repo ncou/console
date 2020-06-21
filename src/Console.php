@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Chiron\Console;
 
+use Chiron\Container\SingletonInterface;
+
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application as SymfonyConsole;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,7 +17,13 @@ use Symfony\Component\Console\Output\ConsoleOutputInterface;
 
 use Throwable;
 
-class Console
+// Exemple avec Tracy : https://github.com/Kdyby/Console/blob/master/src/Application.php
+
+// Exemple pour charger les commandes présentes dans un répertoire : https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/Kernel.php#L208
+// Autre Exemple pour charger des commandes : https://github.com/symfony/symfony/blob/master/src/Symfony/Bundle/FrameworkBundle/Console/Application.php#L160
+
+// TODO : passer la classe en final et les propriétés protected en private !!!!!
+class Console implements SingletonInterface
 {
     protected const COLORS = [
         'bg:red'     => Color::BG_RED,
