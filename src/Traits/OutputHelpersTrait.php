@@ -152,7 +152,7 @@ trait OutputHelpersTrait
         $this->write(str_repeat("\n", $count));
     }
 
-
+    // TODO : faire une vérification si le type de l'élévment est une string sinon lever une InvalidArgumentException (par exemple si on passe un tableau de tableau !!!!) peut etre faire un test si c'est un scalar ???
     protected function listing(array $elements)
     {
         $elements = array_map(function ($element) {
@@ -161,6 +161,17 @@ trait OutputHelpersTrait
 
         $this->writeln($elements);
     }
+
+    // Méthode à conserver ????
+    protected function listing2(array $elements, string $style = 'default')
+    {
+        $elements = array_map(function ($element) use ($style) {
+            return $this->text2(' • ' . $element, $style);
+        }, $elements);
+
+        $this->writeln($elements);
+    }
+
 
     protected function text($message)
     {
@@ -274,6 +285,7 @@ trait OutputHelpersTrait
      *
      * @return bool
      */
+    // TODO : déplacer cette méthode dans la classe abstraite ????
     protected function isVerbose(): bool
     {
         return $this->output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE;

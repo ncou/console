@@ -62,6 +62,59 @@ abstract class AbstractCommand extends SymfonyCommand
     /** @var ContainerInterface */
     protected $container;
 
+
+
+
+
+
+
+
+
+    protected const TITI = 'FOOBAR';
+
+
+    public static function getTITI()
+    {
+        $r = new \ReflectionClass(static::class);
+
+        return $r->getConstant('TITI');
+    }
+
+
+
+    public static function getTITI_OLD()
+    {
+        $reflector = new \ReflectionClass(static::class);
+
+        //$constants = $reflector->getConstants();
+        //return $constants;
+
+        if ($reflector->hasConstant('TITI')) {
+            return $reflector->getConstant('TITI');
+        } else {
+            return 'zuttttt';
+        }
+        //var_dump($mainReflection->getConstant('name'));//Primary
+    }
+
+    /**
+     * @return string|null The default command name or null when no default name is set
+     */
+    public static function getTOTO()
+    {
+        $class = static::class;
+        $r = new \ReflectionProperty($class, 'TOTO'); // defaultName
+
+        return $class === $r->class ? static::$TOTO : null;
+    }
+
+
+
+
+
+
+
+
     /**
      * @param ContainerInterface $container
      */
