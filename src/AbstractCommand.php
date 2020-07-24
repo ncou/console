@@ -45,6 +45,12 @@ abstract class AbstractCommand extends SymfonyCommand
 {
     use InputHelpersTrait, OutputHelpersTrait, CallCommandTrait;
 
+    // TODO : virer ces deux constantes une fois que le support à la version 4.x de symfony/console est droppé !!!! + modifier les signature des méthode getname et has dans la partie CommandLoader pour ajouter le typehint 'string' !!!!
+    public const SUCCESS = 0;
+    public const FAILURE = 1;
+    // TODO : vérifier si on conserve cette constante.
+    public const ERROR = 255;
+
     /**
      * OutputInterface is the interface implemented by all Output classes. Only exists when command are being executed.
      *
@@ -151,6 +157,19 @@ abstract class AbstractCommand extends SymfonyCommand
         // TODO : ajouter un contrôle sur la valeur de retour pour s'assurer que c'est bien un int qui est renvoyé ??? ou alors retourner d'office le code 0 qui indique qu'il n'y a pas eu d'erreurs ????
         // TODO : il faudrait surement faire un try/catch autour de la méthode call, car si la méthode perform n'existe pas une exception sera retournée. Une fois le catch fait il faudra renvoyer une new CommandException($e->getMessage()), pour convertir le type d'exception (penser à mettre le previous exception avec la valeur $e).
         return (int) $injector->call(Closure::fromCallable([$this, 'perform']));
+
+        // TODO : exemple de code pour gérer le retour vide ou null ou suppérieur à 255 (qui est la limite, et normalement ce code est réservé à PHP)
+        // https://github.com/cakephp/console/blob/4.x/CommandRunner.php#L174
+        /*
+        if ($result === null || $result === true) {
+            return CommandInterface::CODE_SUCCESS; //0
+        }
+        if (is_int($result) && $result >= 0 && $result <= 255) {
+            return $result;
+        }
+
+        return CommandInterface::CODE_ERROR; //1
+        */
     }
 
 

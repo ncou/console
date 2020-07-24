@@ -113,6 +113,19 @@ class Console implements SingletonInterface
         $output = $output ?? new ConsoleOutput();
 
         return $this->getApplication()->run($input, $output);
+
+        // TODO : exemple de code pour gérer le retour vide ou null ou suppérieur à 255 (qui est la limite, et normalement ce code est réservé à PHP)
+        // https://github.com/cakephp/console/blob/4.x/CommandRunner.php#L174
+        /*
+        if ($result === null || $result === true) {
+            return CommandInterface::CODE_SUCCESS;
+        }
+        if (is_int($result) && $result >= 0 && $result <= 255) {
+            return $result;
+        }
+
+        return CommandInterface::CODE_ERROR;
+        */
     }
 
     /**
@@ -152,6 +165,21 @@ class Console implements SingletonInterface
     public function add(Command $command): ?Command
     {
         return $this->getApplication()->add($command);
+    }
+
+    /**
+     * Finds a command by name or alias.
+     *
+     * Contrary to get, this command tries to find the best
+     * match if you give it an abbreviation of a name or alias.
+     *
+     * @return Command A Command instance
+     *
+     * @throws CommandNotFoundException When command name is incorrect or ambiguous
+     */
+    public function find(string $name): Command
+    {
+        return $this->getApplication()->find($name);
     }
 
     // TODO : créer des méthodes proxy pour rendre les méthode parent "add()" ou "register()" visible depuis cette classe Console::class
