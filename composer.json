@@ -43,6 +43,7 @@
         "chiron": {
             "bootloaders": [
                 "Chiron\\Console\\Bootloader\\PublishConsoleBootloader",
+                "Chiron\\Console\\Bootloader\\ConsoleBootloader",
                 "Chiron\\Console\\Bootloader\\ConsoleDispatcherBootloader"
             ]
         }
