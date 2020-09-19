@@ -16,6 +16,7 @@ final class ConsoleConfig extends AbstractInjectableConfig
     protected function getConfigSchema(): Schema
     {
         // TODO : il faudrait plutot utiliser un Expect::listOf('string') car ce n'est pas un tableau associatif
+        // TODO : attention on va être embété avec les dépendances car la classe Framework est dans le composant chiron/chiron il faudrait le déplacer dans le composer chiron/core pour plus de souplesse et limiter les dépendance au package core uniquement !!!
         return Expect::structure([
             'name'     => Expect::string()->default(Framework::banner()),
             'version'  => Expect::string()->default(Framework::version()),
