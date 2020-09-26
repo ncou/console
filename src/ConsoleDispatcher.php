@@ -8,6 +8,8 @@ use Chiron\Console\Console;
 use Chiron\Core\Dispatcher\AbstractDispatcher;
 use Throwable;
 
+// TODO : utiliser ce code pour afficher les exceptions dans la console : https://github.com/webmozart/console/blob/master/src/UI/Component/ExceptionTrace.php
+
 /**
  * Manages Console commands and exception. Lazy loads console service.
  */
@@ -34,12 +36,12 @@ final class ConsoleDispatcher extends AbstractDispatcher
         try {
             return $console->run();
         } catch (Throwable $e) {
-            // TODO : il faudrait plutot utiliser le RegisterErrorHandler::renderException($e) pour générer l'affichage de l'exception !!!! Mais attention car cela effectue un die(1), et donc cela va arrété l'application au lieu de retour le code d'erreur 1.
+            // TODO : il faudrait plutot utiliser le RegisterErrorHandler::renderException($e) pour générer l'affichage de l'exception !!!! Mais attention car cela effectue un die(1), et donc cela va arrété l'application au lieu de retourner le code d'erreur 1.
             //$console->handleException($e);
             $this->handleException($e);
 
             // return the default error code.
-            return 1;
+            return 1; // TODO : il faudrait pas retourner un code d'erreur 255 ????
         }
     }
 
