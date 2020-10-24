@@ -18,16 +18,18 @@ trait OutputHelpersTrait
 {
     //Colors alias used by symfony console can be : 'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'default'
     // Options can be : bold, underscore, blink, reverse, conceal
-    // TODO : ajoutr un style critical ou panic ou alert ou emergency qui reprendrait le style de error mais avec un style blink en plus ?
+    // TODO : ajouter un style critical ou panic ou alert ou emergency qui reprendrait le style de error mais avec un style blink en plus ?
+
+    // TODO : créer un style "inform" avec uniquement un fg=cyan ???
     protected static $styles = [
-        'notice'    => 'fg=magenta',
+        'notice'    => 'fg=black;bg=cyan',
         'warning'   => 'fg=black;bg=yellow;options=bold',
         'caution'   => 'fg=white;bg=red',
         'error'     => 'fg=white;bg=red;options=bold',
         'info'      => 'fg=green',
         'comment'   => 'fg=yellow',
         'success'   => 'fg=black;bg=green',
-        'message'   => 'fg=black;bg=cyan',
+        'message'   => 'fg=cyan',//'fg=magenta',
         'default'   => 'fg=default;bg=default'
     ];
 

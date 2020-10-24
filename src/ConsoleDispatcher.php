@@ -36,7 +36,7 @@ final class ConsoleDispatcher extends AbstractDispatcher
         try {
             return $console->run();
         } catch (Throwable $e) {
-            // TODO : il faudrait plutot utiliser le RegisterErrorHandler::renderException($e) pour générer l'affichage de l'exception !!!! Mais attention car cela effectue un die(1), et donc cela va arrété l'application au lieu de retourner le code d'erreur 1.
+            // TODO : il faudrait plutot utiliser le RegisterErrorHandler::renderException($e) pour générer l'affichage de l'exception !!!! Mais attention car cela effectue un die(1), et donc cela va arréter l'application au lieu de retourner le code d'erreur 1.
             //$console->handleException($e);
             $this->handleException($e);
 
@@ -71,12 +71,22 @@ final class ConsoleDispatcher extends AbstractDispatcher
      */
     private function getExceptionOutput(Throwable $exception): string
     {
+        /*
         return sprintf(
             "%s: %s in file %s on line %d",
             get_class($exception),
             $exception->getMessage(),
             $exception->getFile(),
             $exception->getLine()
+        );*/
+
+        return sprintf(
+            "%s: %s \nIn %s on line %d",
+            get_class($exception),
+            $exception->getMessage(),
+            $exception->getFile(),
+            $exception->getLine()
         );
+
     }
 }
