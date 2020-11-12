@@ -33,6 +33,18 @@ final class ConsoleDispatcher extends AbstractDispatcher
     // TODO : il manque le input et ouput pour la console, histoire de pouvoir paramétrer ces valeurs par l'utilisateur (notamment pour les tests)
     protected function perform(Console $console): int
     {
+        //throw new \RuntimeException("Error Processing Rêquest </info>toto</>", 1);
+        /*
+        throw new \RuntimeException(
+        'Uncaught Symfony\Component\Console\Exception\InvalidArgumentException: Incorrectly nested style tag found. in D:\xampp\htdocs\nano5\vendor\symfony\console\Formatter\OutputFormatterStyleStack.php:76
+  Stack trace:
+  #0 D:\xampp\htdocs\nano5\vendor\symfony\console\Formatter\OutputFormatter.php(167): Symfony\Component\Console\Formatter\OutputFormatterStyleStack->pop(Object(Symfony\Component\Console\Formatter\OutputFormatterStyle))
+  #1 D:\xampp\htdocs\nano5\vendor\symfony\console\Formatter\OutputFormatter.php(127): Symfony\Component\Console\Formatter\OutputFormatter->formatAndWrap(, 0)
+  #2 D:\xampp\htdocs\nano5\vendor\symfony\console\Output\Output.php(157): Symfony\Component\Console\Formatter\OutputFormatter->format()
+  #3 D:\xampp\htdocs\nano5\vendor\symfony\console\Output\Output.php(132): Symfony\Component\Console\Output\Output->write(Array, true, 1)
+  #4 D:\xampp\htdocs\nano5\vendor\chiron\chiron\src\ErrorHandler\ConsoleRenderer.php(146): Symfony\Component\Console\Output\Output->w'
+);*/
+
         try {
             return $console->run();
         } catch (Throwable $e) {
@@ -41,7 +53,7 @@ final class ConsoleDispatcher extends AbstractDispatcher
             $this->handleException($e);
 
             // return the default error code.
-            return 1; // TODO : il faudrait pas retourner un code d'erreur 255 ????
+            return 1; // TODO : il faudrait pas retourner un code d'erreur 255 ???? Eventuellement utiliser une constante avec la valeur 255 dans : ErrorHandler::EXIT_CODE
         }
     }
 

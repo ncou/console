@@ -22,6 +22,10 @@ use Chiron\Console\CommandLoader\CommandLoader;
 
 use Throwable;
 
+// TODO : utiliser la fonction configureIO pour récupérer les paramétres style '--no-ansi' ou '--ansi' et donc avoir un output correctement configuré : 
+//https://github.com/spiral/framework/blob/master/src/Console/src/Console.php#L103
+//https://github.com/symfony/console/blob/5.x/Application.php#L880
+
 // Exemple avec Tracy : https://github.com/Kdyby/Console/blob/master/src/Application.php
 
 // Exemple pour charger les commandes présentes dans un répertoire : https://github.com/laravel/framework/blob/master/src/Illuminate/Foundation/Console/Kernel.php#L208
