@@ -13,7 +13,7 @@ final class ConsoleBootloader extends AbstractBootloader
     // TODO : il faudra peut etre passer par l'objet Application::class pour faire un addCommand(). A minima il faudra surement déplacer les "Commands" du fichier console.php vers app.php
     public function boot(Console $console, ConsoleConfig $config): void
     {
-         $console->setName($config->getName());
+        $console->setName($config->getName());
         $console->setVersion($config->getVersion());
 
         foreach ($config->getCommands() as $command) {

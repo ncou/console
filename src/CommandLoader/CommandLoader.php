@@ -10,10 +10,13 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 
+https://github.com/contributte/console/blob/master/src/CommandLoader/ContainerCommandLoader.php
+
 /**
  * Loads commands from a PSR-11 container.
  */
-//  TODO : créer une méthode set($key, $value) pour ajouter une command à la liste $this->commandMap, et virer le parametre $commandMap du container, ou alors l'initialiser pas défaut à []
+// TODO : créer une méthode set($key, $value) pour ajouter une command à la liste $this->commandMap, et virer le parametre $commandMap du container, ou alors l'initialiser pas défaut à []
+// TODO : passer la classe en final et virer les protected !!!!!
 class CommandLoader implements CommandLoaderInterface
 {
     /** @var ContainerInterface */
