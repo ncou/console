@@ -1,121 +1,61 @@
 <?php
 
-/**
- * Spiral Framework.
- *
- * @license   MIT
- * @author    Anton Titov (Wolfy-J)
- */
-
 declare(strict_types=1);
 
-namespace Spiral\Console;
+namespace Chiron\Console;
 
+use Chiron\Injector\Injector;
+use LogicException;
 use Psr\Container\ContainerInterface;
-use Spiral\Console\Traits\HelpersTrait;
-use Spiral\Core\Container;
-use Spiral\Core\Exception\ScopeException;
-use Spiral\Core\ResolverInterface;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Chiron\Console\Traits\InputHelpersTrait;
+use Chiron\Console\Traits\OutputHelpersTrait;
+use Chiron\Console\Traits\CallCommandTrait;
+use Closure;
+
+//https://github.com/spiral/console/blob/master/src/Command.php
+//https://github.com/spiral/console/blob/master/src/Traits/HelpersTrait.php
+
+//https://github.com/viserio/console/blob/master/Command/AbstractCommand.php
+//https://github.com/leevels/console/blob/master/Command.php
+
+//https://github.com/illuminate/console/blob/master/Command.php
+//https://github.com/symfony/console/blob/master/Command/Command.php
+
+//https://github.com/illuminate/console/blob/6.x/Concerns/InteractsWithIO.php
+
+
+//Style des tableaux avec simple ou double bordure =>   https://github.com/symfony/console/blob/master/Helper/Table.php#L808
+
+
+//https://github.com/symfony/console/blob/master/Style/SymfonyStyle.php#L100
+
+// TESTS !!!!!!!!
+//https://github.com/laravel/framework/blob/7.x/tests/Console/CommandTest.php
+
 
 /**
- * Provides automatic command configuration and access to global container scope.
+ * Base command with a bunch of helpers (for input/output and execute sub-commands).
  */
-abstract class Command extends SymfonyCommand
+// TODO : ajouter le containerAwareTrait + ContainerAwareInterface !!!!
+// TODO : on ne peut pas ajouter une fonction abstraite "perform" car le constructeur n'est pas le même selon la classe. Réfléchir cependant à mettre dans cette classe une fonction protected perform qui throw une exception, cela éviterai un check si la méthode existe. Mais voir si cela fonctionne quand la signature de perform définiée dans la classe mére est différente, on risque d'avoir le mêm probléme qu'avec la signature de fonction abstraite !!!
+class Command extends SymfonyCommand
 {
-    use HelpersTrait;
-
-    // Command name.
-    protected const NAME = '';
-
-    //  Short command description.
-    protected const DESCRIPTION = '';
-
-    // Command options specified in Symphony format. For more complex definitions redefine
-    // getOptions() method.
-    protected const OPTIONS = [];
-
-    // Command arguments specified in Symphony format. For more complex definitions redefine
-    // getArguments() method.
-    protected const ARGUMENTS = [];
-
-    /** @var Container */
-    protected $container;
+    use InputHelpersTrait, OutputHelpersTrait, CallCommandTrait;
 
     /**
-     * @param ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container): void
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * {@inheritdoc}
+     * OutputInterface is the interface implemented by all Output classes. Only exists when command are being executed.
      *
-     * Pass execution to "perform" method using container to resolve method dependencies.
+     * @var \Symfony\Component\Console\Output\OutputInterface
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-        if ($this->container === null) {
-            throw new ScopeException('Container is not set');
-        }
-
-        $reflection = new \ReflectionMethod($this, 'perform');
-        $reflection->setAccessible(true);
-
-        /** @var ResolverInterface $resolver */
-        $resolver = $this->container->get(ResolverInterface::class);
-
-        try {
-            list($this->input, $this->output) = [$input, $output];
-
-            //Executing perform method with method injection
-            return (int) $reflection->invokeArgs($this, $resolver->resolveArguments(
-                $reflection,
-                compact('input', 'output')
-            ));
-        } finally {
-            [$this->input, $this->output] = [null, null];
-        }
-    }
+    protected $output;
 
     /**
-     * Configures the command.
-     */
-    protected function configure(): void
-    {
-        $this->setName(static::NAME);
-        $this->setDescription(static::DESCRIPTION);
-
-        foreach ($this->defineOptions() as $option) {
-            call_user_func_array([$this, 'addOption'], $option);
-        }
-
-        foreach ($this->defineArguments() as $argument) {
-            call_user_func_array([$this, 'addArgument'], $argument);
-        }
-    }
-
-    /**
-     * Define command options.
+     * InputInterface is the interface implemented by all input classes. Only exists when command are being executed.
      *
-     * @return array
+     * @var \Symfony\Component\Console\Input\InputInterface
      */
-    protected function defineOptions(): array
-    {
-        return static::OPTIONS;
-    }
-
-    /**
-     * Define command arguments.
-     *
-     * @return array
-     */
-    protected function defineArguments(): array
-    {
-        return static::ARGUMENTS;
-    }
+    protected $input;
 }

@@ -18,11 +18,10 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 
 use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
-use Chiron\Console\CommandLoader\CommandLoader;
 
 use Throwable;
 
-// TODO : utiliser la fonction configureIO pour récupérer les paramétres style '--no-ansi' ou '--ansi' et donc avoir un output correctement configuré : 
+// TODO : utiliser la fonction configureIO pour récupérer les paramétres style '--no-ansi' ou '--ansi' et donc avoir un output correctement configuré :
 //https://github.com/spiral/framework/blob/master/src/Console/src/Console.php#L103
 //https://github.com/symfony/console/blob/5.x/Application.php#L880
 
@@ -37,10 +36,10 @@ class Console implements SingletonInterface
     private $container;
     /** SymfonyApplication */
     private $application;
-    /** CommandLoader */
+    /** CommandLoaderInterface */
     private $commandLoader;
 
-    public function __construct(CommandLoader $commandLoader)
+    public function __construct(CommandLoaderInterface $commandLoader)
     {
         $this->commandLoader = $commandLoader;
     }
@@ -222,7 +221,7 @@ class Console implements SingletonInterface
             return $this->application;
         }
 
-        // TODO : configurer le nom et la version de l'Application Console Symfony 
+        // TODO : configurer le nom et la version de l'Application Console Symfony
         $this->application = new SymfonyApplication();
 
         //$console->setName('TODO');
