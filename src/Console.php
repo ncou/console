@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Chiron\Console;
 
-use Chiron\Container\SingletonInterface;
+//use Chiron\Container\SingletonInterface;
 
 use Symfony\Component\Console\Command\Command;
 
@@ -31,7 +31,7 @@ use Throwable;
 // Autre Exemple pour charger des commandes : https://github.com/symfony/symfony/blob/master/src/Symfony/Bundle/FrameworkBundle/Console/Application.php#L160
 
 // TODO : passer la classe en final et les propriétés protected en private !!!!!
-class Console implements SingletonInterface
+class Console //implements SingletonInterface
 {
     private $container;
     /** SymfonyApplication */
