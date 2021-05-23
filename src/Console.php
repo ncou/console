@@ -227,7 +227,9 @@ class Console //implements SingletonInterface
         //$console->setName('TODO');
         //$console->setVersion('TODO');
 
-        $this->application->setCatchExceptions(false);
+        //$this->application->setCatchExceptions(false);
+
+        $this->application->setCatchExceptions(true);
         $this->application->setAutoExit(false);
 
         $this->application->setCommandLoader($this->commandLoader);
