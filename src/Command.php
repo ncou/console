@@ -15,6 +15,13 @@ use Chiron\Console\Traits\OutputHelpersTrait;
 use Chiron\Console\Traits\CallCommandTrait;
 use Closure;
 
+//https://github.com/tarlepp/symfony-flex-backend/blob/fd64f2e263517724f30a2c91154e7d8dd75d58d7/src/Command/HelperConfigure.php
+
+// TODO : exemple avec un parser pour la signature de la commande. exemple : protected $signature = 'view:publish {--f|force}';
+//https://github.com/hyperf/command/tree/master/src
+//https://github.com/illuminate/console/blob/ba26417c3e34b7f733269778433bd005de8cdbb3/Command.php#L96
+//https://github.com/mnapoli/silly/blob/81d93cde868c25f1b925349400c7d88a26a37cef/src/Application.php#L203
+
 //https://github.com/spiral/console/blob/master/src/Command.php
 //https://github.com/spiral/console/blob/master/src/Traits/HelpersTrait.php
 
