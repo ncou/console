@@ -140,6 +140,8 @@ trait OutputHelpersTrait
      */
     protected function line(string $string, string $style = 'default'): void
     {
+        // TODO : je pense qu'il faudrait vérifier si le string est vide dans ce cas on sort de la fonction sans rien écrire car sinon ca va forcer un saut à la ligne ce qui n'est pas forcément logique ???? A verifier ce qui est le plus logique !!!!
+
         // override the style using predefined presets code/color if found.
         $style = isset(self::$styles[$style]) ? self::$styles[$style] : $style;
 
@@ -292,5 +294,5 @@ trait OutputHelpersTrait
     {
         return $this->output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE;
     }
-   
+
 }

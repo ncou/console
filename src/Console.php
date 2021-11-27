@@ -21,6 +21,11 @@ use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 
 use Throwable;
 
+
+// https://github.com/zachleigh/artisanize/tree/master/src
+// https://github.com/mnapoli/silly
+// https://github.com/cakephp/console/blob/4.x/ConsoleOptionParser.php
+
 // TODO : utiliser la fonction configureIO pour récupérer les paramétres style '--no-ansi' ou '--ansi' et donc avoir un output correctement configuré :
 //https://github.com/spiral/framework/blob/master/src/Console/src/Console.php#L103
 //https://github.com/symfony/console/blob/5.x/Application.php#L880
@@ -39,6 +44,7 @@ class Console //implements SingletonInterface
     /** CommandLoaderInterface */
     private $commandLoader;
 
+    // TODO : attention on passe un typehint CommandLoader et non pas un CommandLoaderInterface !!!! car plus tard on a besoin de la méthode set() qui n'existe pas !!!!
     public function __construct(CommandLoaderInterface $commandLoader)
     {
         $this->commandLoader = $commandLoader;
@@ -189,7 +195,7 @@ class Console //implements SingletonInterface
     public function addCommand(string $name, string $command): void
     {
         // TODO : passer en paramétre à la méthode addCommand() seulement un string $className et détecter dans ce bout de code le name/command pour ensuite le passer à la méthode set(). Si le defaultName() n'est pas défini, alors lever une CommandException avec les message d'erreur qui va bien. + Faire un try/catch dans la classe ConsoleBootloader pour transformer cette exception en ApplicationException (éventuellement, sinon on pourrait laisser l'erreru se propager naturellement !!!!)
-        $this->commandLoader->set($name, $command);
+        $this->commandLoader->set($name, $command); // TODO : attention ce bout de code est faux car il appel la méthode set() mais elle n'existe pas dans l'interface CommandLoaderInterface, nous on utiliser un Chiron\Core\Console\CommandLoader qui implémente cette méthode.
     }
 
     // TODO : méthode à virer !!!

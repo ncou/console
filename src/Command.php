@@ -21,6 +21,7 @@ use Closure;
 //https://github.com/hyperf/command/tree/master/src
 //https://github.com/illuminate/console/blob/ba26417c3e34b7f733269778433bd005de8cdbb3/Command.php#L96
 //https://github.com/mnapoli/silly/blob/81d93cde868c25f1b925349400c7d88a26a37cef/src/Application.php#L203
+//https://github.com/zachleigh/artisanize/tree/master/src
 
 //https://github.com/spiral/console/blob/master/src/Command.php
 //https://github.com/spiral/console/blob/master/src/Traits/HelpersTrait.php
@@ -46,7 +47,6 @@ use Closure;
 /**
  * Base command with a bunch of helpers (for input/output and execute sub-commands).
  */
-// TODO : ajouter le containerAwareTrait + ContainerAwareInterface !!!!
 // TODO : on ne peut pas ajouter une fonction abstraite "perform" car le constructeur n'est pas le même selon la classe. Réfléchir cependant à mettre dans cette classe une fonction protected perform qui throw une exception, cela éviterai un check si la méthode existe. Mais voir si cela fonctionne quand la signature de perform définiée dans la classe mére est différente, on risque d'avoir le mêm probléme qu'avec la signature de fonction abstraite !!!
 class Command extends SymfonyCommand
 {
