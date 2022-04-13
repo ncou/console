@@ -21,6 +21,8 @@ use Symfony\Component\Console\CommandLoader\CommandLoaderInterface;
 
 use Throwable;
 
+// TODO : exemple d'une fonction pour lancer directement une command via :   command('chiron:clear my_path')
+//https://github.com/codeigniter4/framework/blob/5b34d725f94fb0675d761bc55cb886480c85a5a4/system/Common.php#L122
 
 // https://github.com/zachleigh/artisanize/tree/master/src
 // https://github.com/mnapoli/silly
@@ -191,11 +193,12 @@ class Console //implements SingletonInterface
         return $this->getApplication()->find($name);
     }
 
+    // TODO : retirer cette méthode on passera directement pas le CommandLoader pour injecter les commandes !!!!
     // TODO : créer des méthodes proxy pour rendre les méthode parent "add()" ou "register()" visible depuis cette classe Console::class
     public function addCommand(string $name, string $command): void
     {
         // TODO : passer en paramétre à la méthode addCommand() seulement un string $className et détecter dans ce bout de code le name/command pour ensuite le passer à la méthode set(). Si le defaultName() n'est pas défini, alors lever une CommandException avec les message d'erreur qui va bien. + Faire un try/catch dans la classe ConsoleBootloader pour transformer cette exception en ApplicationException (éventuellement, sinon on pourrait laisser l'erreru se propager naturellement !!!!)
-        $this->commandLoader->set($name, $command); // TODO : attention ce bout de code est faux car il appel la méthode set() mais elle n'existe pas dans l'interface CommandLoaderInterface, nous on utiliser un Chiron\Core\Console\CommandLoader qui implémente cette méthode.
+        $this->commandLoader->set($command); // TODO : attention ce bout de code est faux car il appel la méthode set() mais elle n'existe pas dans l'interface CommandLoaderInterface, nous on utiliser un Chiron\Core\Console\CommandLoader qui implémente cette méthode.
     }
 
     // TODO : méthode à virer !!!

@@ -7,8 +7,7 @@ namespace Chiron\Console\Traits;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\OutputInterface;
 
-//use Symfony\Component\Console\Output\ConsoleOutputInterface;
-//use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+//https://github.com/hechoendrupal/drupal-console-core/blob/ab3abc2631761c9588230ba88189d9ba4eb9ed63/src/Style/DrupalStyle.php#L195
 
 /**
  * Trait expect command to set $output scope.
